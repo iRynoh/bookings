@@ -11,11 +11,9 @@ class TimeSlotGenerator
 {
     public const INCREMENT = 15;
 
-    public Schedule $schedule;
-    public Service $service;
     protected $interval;
 
-    public function __construct(Schedule $schedule, Service $service)
+    public function __construct(public Schedule $schedule, public Service $service)
     {
         $this->interval = CarbonInterval::minutes(self::INCREMENT)
                                         ->toPeriod(
@@ -24,8 +22,6 @@ class TimeSlotGenerator
                                                 $schedule->end_time->subMinutes($service->duration)
                                             )
                                         );
-        $this->schedule = $schedule;
-        $this->service = $service;
     }
 
     public function applyFilters(array $filters)
