@@ -17,8 +17,8 @@ class CreateEmployeeServiceTable extends Migration
     {
         Schema::create('employee_service', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Employee::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Service::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Employee::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
